@@ -1,12 +1,11 @@
 from django.db import models
-
-# Create your models here.
+from django.urls import reverse
 
 class Article(models.Model):
-    title = models.CharField(max_length=120)
+    title   = models.CharField(max_length=120)
     content = models.TextField()
-    actice = models.BooleanField(default=True)
+    active  = models.BooleanField(default=True)
 
     def get_absolute_url(self):
-        None
-        #return reverse(":", kwargs={"my_id": self.id})
+        return reverse("articles:article-detail", kwargs={"id": self.id})
+
